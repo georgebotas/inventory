@@ -1,10 +1,11 @@
 package com.georgebotas.inventory;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
-
+@Component
 public class Menu implements IMenu {
 
     @Autowired
@@ -165,7 +166,7 @@ public class Menu implements IMenu {
 
     @Override
     public void validate_int(int userInt) {
-        while (!UserInputValidator.validateUserInt()) {
+        while (!UserInputValidator.validateUserInt(userInt)) {
             System.out.println(Print.invalidNumber);
             userInt = SCAN.nextInt();
         }

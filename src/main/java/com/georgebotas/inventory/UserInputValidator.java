@@ -6,6 +6,6 @@ public class UserInputValidator {
         return !userName.trim().isEmpty();
     }
 
-    public static boolean validateUserInt() { return Menu.SCAN.hasNextInt(); }
+    public static boolean validateUserInt(int userInt) { return String.valueOf(userInt).matches("[0-9]+"); }
 
 }

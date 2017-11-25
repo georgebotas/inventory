@@ -1,11 +1,13 @@
 package com.georgebotas.inventory;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+@Component
 public class Inventory implements IInventory {
 
     @Autowired

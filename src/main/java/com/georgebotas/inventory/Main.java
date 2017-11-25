@@ -10,7 +10,6 @@ public class Main {
 
     public static void main(String[] args){
 
-        Product product = new Product();
         ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/beans.xml");
 
         IMenu imenu = (IMenu)context.getBean("imenu");;
