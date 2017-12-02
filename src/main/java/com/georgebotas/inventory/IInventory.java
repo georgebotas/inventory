@@ -1,31 +1,32 @@
 package com.georgebotas.inventory;
 
 public interface IInventory {
-    void validateID(Long product_ID);
 
-    void validateStock(Long product_id, int userRemove);
+    boolean validateID(Long product_ID);
 
-    void showInventory();
+    boolean validateStock(Long product_id, int productRemove);
 
-    void addToStock(Long product_ID, int userAdd);
+    void showInventory() throws Exception;
 
-    void removeFromStock(Long product_ID, int userRemove);
+    void addToStock(Long product_ID, int productAdd) throws Exception;
 
-    void createProduct(String name, String type, int price);
+    void removeFromStock(Long product_ID, int productRemove) throws Exception;
 
-    void editName(Long product_ID, String name);
+    void createProduct(String name, String type, int price) throws Exception;
 
-    void editType(Long product_ID, String type);
+    void editName(Long product_ID, String name) throws Exception;
 
-    void editPrice(Long product_ID, int price);
+    void editType(Long product_ID, String type) throws Exception;
 
-    void deleteProduct(Long product_ID);
+    void editPrice(Long product_ID, int price) throws Exception;
 
-    void sortProductsName();
+    void deleteProduct(Long product_ID) throws Exception;
 
-    void sortProductsType();
+    void sortProductsName() throws Exception;
 
-    void sortProductsPrice();
+    void sortProductsType() throws Exception;
 
-    void sortProductsStock();
+    void sortProductsPrice() throws Exception;
+
+    void sortProductsStock() throws Exception;
 }

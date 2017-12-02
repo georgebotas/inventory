@@ -13,7 +13,6 @@ public class Main {
         ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/beans.xml");
 
         IMenu imenu = (IMenu)context.getBean("imenu");;
-        System.out.println(Print.mainMenu);
         imenu.select();
     }
 }

@@ -14,154 +14,109 @@ public class DbOps implements IDbOps {
     private EntityManager manager = ENTITY_MANAGER_FACTORY.createEntityManager();
     private EntityTransaction transaction;
 
-    @Override
-    public void validateID(Long product_ID) {
 
-        transaction = manager.getTransaction();
-        transaction.begin();
+    @Override
+    public boolean validateID(Long product_ID) {
+
+        //transaction = manager.getTransaction();
+        //transaction.begin();
         Product product = manager.find(Product.class, product_ID);
         if (product == null) {
-            System.out.println(Print.invalidID);
-            System.exit(0);
+            return false;
         }
+        return true;
     }
 
     @Override
-    public void validateStock(Long product_ID, int userRemove) {
-       // transaction = manager.getTransaction();
-       // transaction.begin();
+    public boolean validateStock(Long product_ID, int productRemove) {
+
         Product product = manager.find(Product.class, product_ID);
-        if (product.getStock() - userRemove < 0) {
-            System.out.println(Print.negativeStock);
-            System.exit(0);
+        if (product.getStock() - productRemove < 0) {
+            return false;
         }
+        return true;
     }
 
     @Override
-    public ArrayList<Product> productList() {
+    public ArrayList<Product> productList() throws Exception {
         ArrayList<Product> products = null;
-        try {
-            transaction = manager.getTransaction();
-            transaction.begin();
-            products = (ArrayList<Product>) manager.createQuery("SELECT c FROM Product c", Product.class).getResultList();
-            transaction.commit();
-        } catch (Exception ex) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            ex.printStackTrace();
-        }
+        transaction = manager.getTransaction();
+        transaction.begin();
+        products = (ArrayList<Product>) manager.createQuery("SELECT c FROM Product c", Product.class).getResultList();
+        transaction.commit();
         return products;
     }
 
     @Override
-    public void addToStock(Long product_ID, int userAdd) {
-        try {
-            Product product = manager.find(Product.class, product_ID);
-            product.setStock(product.getStock() + userAdd);
-            manager.persist(product);
-            transaction.commit();
-        } catch (Exception ex) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            ex.printStackTrace();
-        }
+    public void addToStock(Long product_ID, int productAdd) throws Exception {
+        transaction = manager.getTransaction();
+        transaction.begin();
+        Product product = manager.find(Product.class, product_ID);
+        product.setStock(product.getStock() + productAdd);
+        manager.persist(product);
+        transaction.commit();
     }
 
     @Override
-    public void removeFromStock(Long product_ID, int userRemove) {
-        try {
-            Product product = manager.find(Product.class, product_ID);
-            product.setStock(product.getStock() - userRemove);
-            manager.persist(product);
-            transaction.commit();
-        } catch (Exception ex) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            ex.printStackTrace();
-        }
+    public void removeFromStock(Long product_ID, int productRemove) throws Exception {
+        transaction = manager.getTransaction();
+        transaction.begin();
+        Product product = manager.find(Product.class, product_ID);
+        product.setStock(product.getStock() - productRemove);
+        manager.persist(product);
+        transaction.commit();
     }
 
     @Override
-    public void createProduct(String name, String type, int price) {
-        try {
-            transaction = manager.getTransaction();
-            transaction.begin();
-            Product product = new Product();
-            product.setName(name);
-            product.setType(type);
-            product.setPrice(price);
-            product.setStock(0);
-            manager.persist(product);
-            transaction.commit();
-        } catch (Exception ex) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            ex.printStackTrace();
-        }
+    public void createProduct(String name, String type, int price) throws Exception {
+        transaction = manager.getTransaction();
+        transaction.begin();
+        Product product = new Product();
+        product.setName(name);
+        product.setType(type);
+        product.setPrice(price);
+        product.setStock(0);
+        manager.persist(product);
+        transaction.commit();
     }
 
     @Override
-    public void editName(Long product_ID, String name) {
-        try {
-            Product product = manager.find(Product.class, product_ID);
-            product.setName(name);
-            manager.persist(product);
-            transaction.commit();
-        } catch (Exception ex) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            ex.printStackTrace();
-        }
+    public void editName(Long product_ID, String name) throws Exception {
+        transaction = manager.getTransaction();
+        transaction.begin();
+        Product product = manager.find(Product.class, product_ID);
+        product.setName(name);
+        manager.persist(product);
+        transaction.commit();
     }
 
     @Override
-    public void editType(Long product_ID, String type) {
-        try {
-            Product product = manager.find(Product.class, product_ID);
-            product.setType(type);
-            manager.persist(product);
-            transaction.commit();
-        } catch (Exception ex) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            ex.printStackTrace();
-        }
+    public void editType(Long product_ID, String type) throws Exception {
+        transaction = manager.getTransaction();
+        transaction.begin();
+        Product product = manager.find(Product.class, product_ID);
+        product.setType(type);
+        manager.persist(product);
+        transaction.commit();
     }
 
     @Override
-    public void editPrice(Long product_ID, int price) {
-        try {
-            Product product = manager.find(Product.class, product_ID);
-            product.setPrice(price);
-            manager.persist(product);
-            transaction.commit();
-        } catch (Exception ex) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            ex.printStackTrace();
-        }
+    public void editPrice(Long product_ID, int price) throws Exception {
+        transaction = manager.getTransaction();
+        transaction.begin();
+        Product product = manager.find(Product.class, product_ID);
+        product.setPrice(price);
+        manager.persist(product);
+        transaction.commit();
     }
 
     @Override
-    public void deleteProduct(Long product_ID) {
-        try {
-
-            Product product = manager.find(Product.class, product_ID);
-            manager.remove(product);
-            transaction.commit();
-        } catch (Exception ex) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            ex.printStackTrace();
-        }
+    public void deleteProduct(Long product_ID) throws Exception {
+        transaction = manager.getTransaction();
+        transaction.begin();
+        Product product = manager.find(Product.class, product_ID);
+        manager.remove(product);
+        transaction.commit();
     }
 
 }

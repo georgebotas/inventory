@@ -17,67 +17,65 @@ public class Inventory implements IInventory {
     }
 
     @Override
-    public void validateID(Long product_ID) {
-        idbops.validateID(product_ID);
+    public boolean validateID(Long product_ID) {
+        return idbops.validateID(product_ID);
     }
 
     @Override
-    public void validateStock(Long product_id, int userRemove){
-        idbops.validateStock(product_id, userRemove);
+    public boolean validateStock(Long product_id, int productRemove) {
+        return idbops.validateStock(product_id, productRemove);
     }
 
     @Override
-    public void showInventory() {
+    public void showInventory() throws Exception{
         ArrayList<Product> products = idbops.productList();
         int count = 0;
         System.out.printf("%-10s %-21s %-21s %-21s %-21s \n", "   ID:", "NAME:", "TYPE:", "PRICE:", "STOCK");
-        try {
             for (Product product : products) {
                 System.out.printf("%d. %-7s %-21s %-21s %-21s %s \n", count + 1, product.getProduct_id(), product.getName(), product.getType(),
                         product.getPrice(), product.getStock());
                 count++;
             }
             System.out.println();
-        } catch (NullPointerException ne) {
-            System.out.println(Print.emptyInventory);
         }
+
+    @Override
+    public void addToStock(Long product_ID, int productAdd) throws Exception {
+        idbops.addToStock(product_ID, productAdd);
     }
 
     @Override
-    public void addToStock(Long product_ID, int userAdd) {
-        idbops.addToStock(product_ID, userAdd);
+    public void removeFromStock(Long product_ID, int productRemove) throws Exception {
+        idbops.removeFromStock(product_ID, productRemove);
     }
 
     @Override
-    public void removeFromStock(Long product_ID, int userRemove) {
-        idbops.removeFromStock(product_ID, userRemove);
-    }
-
-    @Override
-    public void createProduct(String name, String type, int price) {
+    public void createProduct(String name, String type, int price) throws Exception {
         idbops.createProduct(name, type, price);
     }
 
     @Override
-    public void editName(Long product_ID, String name) {
+    public void editName(Long product_ID, String name) throws Exception{
         idbops.editName(product_ID, name);
     }
 
     @Override
-    public void editType(Long product_ID, String type) {
+    public void editType(Long product_ID, String type) throws Exception{
         idbops.editType(product_ID, type);
     }
 
     @Override
-    public void editPrice(Long product_ID, int price) { idbops.editPrice(product_ID, price); }
+    public void editPrice(Long product_ID, int price) throws Exception{
+        idbops.editPrice(product_ID, price);
+    }
 
     @Override
-    public void deleteProduct(Long product_ID) {
+    public void deleteProduct(Long product_ID) throws Exception {
         idbops.deleteProduct(product_ID);
     }
 
     @Override
-    public void sortProductsName() {
+    public void sortProductsName() throws Exception{
 
         ArrayList<Product> products = idbops.productList();
         int count = 0;
@@ -96,7 +94,7 @@ public class Inventory implements IInventory {
     }
 
     @Override
-    public void sortProductsType() {
+    public void sortProductsType() throws Exception{
 
         ArrayList<Product> products = idbops.productList();
         int count = 0;
@@ -115,7 +113,7 @@ public class Inventory implements IInventory {
     }
 
     @Override
-    public void sortProductsPrice() {
+    public void sortProductsPrice() throws Exception{
 
         ArrayList<Product> products = idbops.productList();
         int count = 0;
@@ -134,7 +132,7 @@ public class Inventory implements IInventory {
     }
 
     @Override
-    public void sortProductsStock() {
+    public void sortProductsStock() throws Exception{
 
         ArrayList<Product> products = idbops.productList();
         int count = 0;
