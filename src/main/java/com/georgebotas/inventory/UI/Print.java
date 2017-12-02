@@ -1,4 +1,4 @@
-package com.georgebotas.inventory;
+package com.georgebotas.inventory.UI;
 
 public class Print {
     private static String smainMenu = ("THE INVETORY: PLEASE CHOOSE AN OPTION BY ENTERING THE CORESPONDING NUMBER:\n\n" +

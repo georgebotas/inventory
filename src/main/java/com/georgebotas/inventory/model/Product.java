@@ -1,4 +1,4 @@
-package com.georgebotas.inventory;
+package com.georgebotas.inventory.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

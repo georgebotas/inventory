@@ -1,12 +1,16 @@
-package com.georgebotas.inventory;
+package com.georgebotas.inventory.DB;
 
-public interface IInventory {
+import com.georgebotas.inventory.model.Product;
+
+import java.util.ArrayList;
+
+public interface IDbOps {
 
     boolean validateID(Long product_ID);
 
-    boolean validateStock(Long product_id, int productRemove);
+    boolean validateStock(Long product_ID, int productRemove);
 
-    void showInventory() throws Exception;
+    ArrayList<Product> productList() throws Exception;
 
     void addToStock(Long product_ID, int productAdd) throws Exception;
 
@@ -21,12 +25,4 @@ public interface IInventory {
     void editPrice(Long product_ID, int price) throws Exception;
 
     void deleteProduct(Long product_ID) throws Exception;
-
-    void sortProductsName() throws Exception;
-
-    void sortProductsType() throws Exception;
-
-    void sortProductsPrice() throws Exception;
-
-    void sortProductsStock() throws Exception;
 }

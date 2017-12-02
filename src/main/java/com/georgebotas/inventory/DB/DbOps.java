@@ -1,5 +1,6 @@
-package com.georgebotas.inventory;
+package com.georgebotas.inventory.DB;
 
+import com.georgebotas.inventory.model.Product;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;

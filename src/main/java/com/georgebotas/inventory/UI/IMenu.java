@@ -1,4 +1,4 @@
-package com.georgebotas.inventory;
+package com.georgebotas.inventory.UI;
 
 public interface IMenu {
 

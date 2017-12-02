@@ -1,5 +1,7 @@
-package com.georgebotas.inventory;
+package com.georgebotas.inventory.Middleware;
 
+import com.georgebotas.inventory.DB.IDbOps;
+import com.georgebotas.inventory.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
